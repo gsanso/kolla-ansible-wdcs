@@ -1,0 +1,8 @@
+---
+- name: Instalar paquetes útiles
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+  - parted
+  - vim
+  - aptitude

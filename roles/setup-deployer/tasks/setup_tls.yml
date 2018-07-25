@@ -1,0 +1,9 @@
+---
+- name: Verifcar que el dir /etc/kolla exista
+  file:
+    path: /etc/kolla/certificates/private
+    state: directory
+
+- name: Generar los certificados
+  shell: /home/vagrant/kolla-ansible/tools/kolla-ansible -i ./multinode certificates
+  become: true

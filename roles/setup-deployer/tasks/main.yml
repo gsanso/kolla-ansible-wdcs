@@ -1,0 +1,2 @@
+#- include_tasks: pkg.yml
+- include_tasks: install_kolla.yml

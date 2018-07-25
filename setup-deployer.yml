@@ -1,0 +1,5 @@
+---
+- name: Setup deployer node
+  hosts: kolla-deployer
+  roles:
+    - { role: setup-deployer }

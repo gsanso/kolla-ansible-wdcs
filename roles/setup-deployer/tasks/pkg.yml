@@ -1,0 +1,46 @@
+---
+- name: Add Ansible repository
+  apt_repository:
+    repo: ppa:ansible/ansible
+
+#- name: Install Python minimal
+#  shell: apt-get install -y python-minimal
+#  become: yes
+
+- name: Install Python packages
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+  - python-minimal
+  - python2.7-dev
+  - python-pip
+  - python-openstackclient
+  - python-glanceclient
+  - python-neutronclient
+  - ansible
+  - sshpass
+  - git
+
+- name: Remover paquetes conflictivos
+  apt: name={{ item }} state=absent
+  become: yes
+  with_items:
+  - python-ndg-httpsclient
+  - python-openssl
+
+
+#- name: Install docker engine
+#  yum:
+#    name: docker-ce
+#    state: present
+#  become: yes
+#
+#- name: Install API client for docker
+#  package:
+#      name: docker-python
+#      state: installed
+#  become: yes
+
+
+
+
