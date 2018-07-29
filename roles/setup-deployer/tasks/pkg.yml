@@ -3,18 +3,11 @@
   apt_repository:
     repo: ppa:ansible/ansible
 
-- name: Agrego repositorio Docker
-  apt_repository:
-    repo: deb http://apt.dockerproject.org/repo ubuntu-xenial main
-    state: present
-    validate_certs: no
-
-
 #- name: Install Python minimal
 #  shell: apt-get install -y python-minimal
 #  become: yes
 
-- name: Install Python packages
+- name: Install packages
   apt: name={{ item }} state=present
   become: yes
   with_items:
@@ -28,10 +21,6 @@
   - aptitude
   - curl
   - telnet
-
-- name: instalar docker
-  shell: apt-get install -y - docker-engine --allow-unauthenticated
-  become: yes
 
 - name: Remover paquetes conflictivos
   apt: name={{ item }} state=absent
