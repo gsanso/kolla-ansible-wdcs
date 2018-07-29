@@ -1,0 +1,7 @@
+- name: Configurar los nodos y el deployer
+  hosts: all
+  remote_user: root
+
+  roles:
+    - setup-deployer
+    - setup-nodes

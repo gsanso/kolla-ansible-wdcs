@@ -13,12 +13,24 @@
     repo: https://github.com/openstack/kolla.git
     dest: /home/vagrant/kolla
     version: "stable/{{ openstack_version }}"
+  become: yes
+  become_user: vagrant
 
 - name: Clonar repo kolla-ansible
   git:
-    repo: https://github.com/openstack/kolla-ansible.git
+    repo: https://github.com/gsanso/kolla-ansible.git
     dest: /home/vagrant/kolla-ansible
     version: "stable/{{ openstack_version }}"
+  become: yes
+  become_user: vagrant
+
+- name: Clonar repo kolla-ansible-wdcs
+  git:
+    repo: https://github.com/gsanso/kolla-ansible-wdcs.git
+    dest: /home/vagrant/kolla-ansible-wdcs
+    version: master 
+  become: yes
+  become_user: vagrant
 
 - name: Instalar requerimientos para kolla
   pip:
@@ -58,6 +70,13 @@
   become: true
 
 #- name: Crear las ssh keys para el usuario en el deployer
+- name: Crear key de ssh de 2048-bit
+  user:
+    name: vagrant
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
 
 - name: Generar las contraseñas
   shell: /home/vagrant/kolla-ansible/tools/generate_passwords.py

@@ -1,0 +1,23 @@
+---
+
+- name: Ensure a locale exists
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+
+- name: Grupo docker debe existir
+  group:
+    name: docker
+    state: present
+
+- name: Agregar usuario a grupo docker
+  user:
+    name: vagrant
+    state: present
+    groups: docker
+
+- name: Set authorized key for user vagrant
+  authorized_key:
+    user: vagrant
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

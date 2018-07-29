@@ -1,31 +1,31 @@
 ---
-#- name: kolla-deployer
-#  box: nrclark/xenial64-minimal-libvirt
-#  ram: 2048
-#  ip: 172.16.0.100
-#  ip2: 192.168.1.100
-#  disk: 50
+- name: kolla-deployer
+  box: nrclark/xenial64-minimal-libvirt
+  ram: 2048
+  ip: 172.16.0.100
+  ip2: 192.168.1.100
+  disk: 50G
 - name: kolla-ct1
   box: nrclark/xenial64-minimal-libvirt
   ram: 2048
   ip: 172.16.0.10
   ip2: 192.168.1.10
-  disk: 50
+  disk: 50G
 - name: kolla-ct2
   box: nrclark/xenial64-minimal-libvirt
   ram: 2048
   ip: 172.16.0.11
   ip2: 192.168.1.11
-  disk: 50
+  disk: 50G
 - name: kolla-ct3
   box: nrclark/xenial64-minimal-libvirt
   ram: 2048
   ip: 172.16.0.12
   ip2: 192.168.1.12
-  disk: 50
+  disk: 50G
 - name: kolla-cp1
   box: nrclark/xenial64-minimal-libvirt
   ram: 4096
   ip: 172.16.0.13
   ip2: 192.168.1.13
-  disk: 80
+  disk: 80G

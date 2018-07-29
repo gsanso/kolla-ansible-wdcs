@@ -1,1 +1,2 @@
 - include_tasks: pkg.yml
+- include_tasks: setup.yml
