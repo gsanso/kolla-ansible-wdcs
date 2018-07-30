@@ -3,10 +3,6 @@
   apt_repository:
     repo: ppa:ansible/ansible
 
-#- name: Install Python minimal
-#  shell: apt-get install -y python-minimal
-#  become: yes
-
 - name: Install packages
   apt: name={{ item }} state=present
   become: yes
@@ -28,3 +24,10 @@
   with_items:
   - python-ndg-httpsclient
   - python-openssl
+
+- name: Instalar openstack client desde pip
+  pip: name={{ item }}
+  with_items:
+  - python-openstackclient
+  - python-glanceclient
+  - python-neutronclient

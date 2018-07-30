@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                         #:libvirt__dhcp_enabled => false
 
       srv.vm.network    :public_network,
-                        :dev => "virbr0",
+                        :dev => "br0",
                         :mode => "bridge",
                         :type => "bridge"
 
@@ -46,7 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         libvirt.memory = servers["ram"]
         #libvirt.cpus = servers["cpus"]
         #libvirt.machine_virtual_size = servers["disk"]
-        libvirt.storage :file, :size => servers["disk"], :type => 'raw', :cache => 'none'
+        libvirt.storage :file, :size => servers["disk"], :type => 'qcow2', :cache => 'none'
         #libvirt.storage_pool_name = ENV['STORAGE_POOL']
       end
 

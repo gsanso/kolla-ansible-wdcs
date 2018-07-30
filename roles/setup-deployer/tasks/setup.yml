@@ -15,3 +15,7 @@
     name: vagrant
     state: present
     groups: docker
+
+- name: Copiar fichero de configuracion de Ansible
+  template: src=ansible.cfg.j2 dest=/etc/ansible/ansible.cfg
+  become: true
