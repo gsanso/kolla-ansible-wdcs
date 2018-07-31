@@ -1,8 +1,8 @@
 [deployer]
-kolla-deployer ansible_host=172.16.0.100 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-deployer ansible_host=10.1.1.100 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
 
 [nodes]
-kolla-ct1 ansible_host=172.16.0.10 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
-kolla-ct2 ansible_host=172.16.0.11 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
-kolla-ct3 ansible_host=172.16.0.12 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
-kolla-cp1 ansible_host=172.16.0.13 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-ct1 ansible_host=10.1.1.10 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-ct2 ansible_host=10.1.1.11 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-ct3 ansible_host=10.1.1.12 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-cp1 ansible_host=10.1.1.13 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
