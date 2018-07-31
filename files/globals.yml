@@ -175,9 +175,6 @@ enable_central_logging: "yes"
 #enable_destroy_images: "no"
 #enable_etcd: "no"
 #enable_fluentd: "yes"
-
-enable_fluentd: "no"
-
 #enable_freezer: "no"
 #enable_gnocchi: "no"
 #enable_grafana: "no"
@@ -445,3 +442,9 @@ tempest_floating_network_name:
 #xenserver_himn_ip:
 #xenserver_username:
 #xenserver_connect_protocol:
+#
+#
+
+
+# For provider networks compute hosts must have external bridge created and configured by Ansible tasks like it is already done for tenant DVR mode networking. Normal tenant non-DVR networking does not need external bridge on compute hosts and therefore operators don’t need additional dedicated network interface.
+enable_neutron_provider_networks: "yes"
