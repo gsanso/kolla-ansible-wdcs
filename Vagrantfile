@@ -8,6 +8,10 @@ if not File.file?("./vagrantkey")
 end
 
 Vagrant.configure(2) do |config|
+  # Para que no haya que autenticar con key
+#  config.ssh.insert_key = false
+#config.ssh.username = "vagrant"
+#config.ssh.password = "vagrant"
   # The base image to use
   # TODO (harmw): something more close to vanilla would be nice, someday.
   config.vm.box = "ubuntu/xenial64"
@@ -17,19 +21,20 @@ Vagrant.configure(2) do |config|
   # outside public network.
   # TODO (harmw): see if there is a way to automate the selection of the bridge
   # interface.
-  #config.vm.network "private_network", type: "dhcp"
-  #config.vm.network "public_network", ip: "0.0.0.0", bridge: "br0"
 
   my_privatekey = File.read(File.join(File.dirname(__FILE__), "vagrantkey"))
   my_publickey = File.read(File.join(File.dirname(__FILE__), "vagrantkey.pub"))
 
   # TODO (harmw): This is slightly difficult to read.
-  config.vm.provision :shell, :inline => "mkdir -p /root/.ssh && echo '#{my_privatekey}' > /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa"
-  config.vm.provision :shell, :inline => "echo '#{my_publickey}' > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys"
+  config.vm.provision :shell, :inline => "apt-get install -y python-minimal"
   config.vm.provision :shell, :inline => "mkdir -p /home/vagrant/.ssh && echo '#{my_privatekey}' >> /home/vagrant/.ssh/id_rsa && chmod 600 /home/vagrant/.ssh/*"
-  config.vm.provision :shell, :inline => "echo 'Host *' > ~vagrant/.ssh/config"
-  config.vm.provision :shell, :inline => "echo StrictHostKeyChecking no >> ~vagrant/.ssh/config"
+ config.vm.provision :shell, :inline => "echo '#{my_publickey}' > /home/vagrant/.ssh/authorized_keys"
+ config.vm.provision :shell, :inline => "chmod 600 /home/vagrant/.ssh/authorized_keys"
+
+  config.vm.provision :shell, :inline => "echo 'Host *' > /home/vagrant/.ssh/config"
+  config.vm.provision :shell, :inline => "echo StrictHostKeyChecking no >> /home/vagrant/.ssh/config"
   config.vm.provision :shell, :inline => "chown -R vagrant: /home/vagrant/.ssh"
+
 
   config.hostmanager.enabled = true
   config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
@@ -44,7 +49,7 @@ Vagrant.configure(2) do |config|
     #deployer.vm.provision :shell, path: "bootstrap.sh", args: "operator"
     deployer.vm.network "private_network", ip: "10.1.1.100"
     deployer.vm.network "public_network", ip: "0.0.0.0", bridge: "br0"
-    deployer.vm.synced_folder "storage/operator/", "/data/host", create:"True"
+    deployer.vm.synced_folder "storage/deployer/", "/data/host", create:"True"
     deployer.vm.synced_folder "storage/shared/", "/data/shared", create:"True"
     deployer.vm.synced_folder ".", "/vagrant", disabled: true
     deployer.vm.provider "virtualbox" do |vb|

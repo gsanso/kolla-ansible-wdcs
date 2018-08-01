@@ -50,18 +50,18 @@
     requirements: /home/vagrant/kolla-ansible/requirements.txt
   become: true
 
-- name: Instalar requerimientos para kolla-cli
-  pip:
-    requirements: /home/vagrant/kolla-cli/requirements.txt
-  become: true
+#- name: Instalar requerimientos para kolla-cli
+#  pip:
+#    requirements: /home/vagrant/kolla-cli/requirements.txt
+#  become: true
 
-- name: Instalar kolla-cli
-  shell: "python /home/vagrant/kolla-cli/setup.py install"
-  become: true
-
-- name: Setup kolla-cli
-  shell: "python /home/vagrant/kolla-cli/cli_setup.py"
-  become: true
+#- name: Instalar kolla-cli
+#  shell: "python /home/vagrant/kolla-cli/setup.py install"
+#  become: true
+#
+#- name: Setup kolla-cli
+#  shell: "python /home/vagrant/kolla-cli/cli_setup.py"
+#  become: true
 
 - name: Copiar fichero multinode (inventory)
   template: src=multinode.j2 dest=/home/vagrant/kolla-ansible/ansible/multinode
