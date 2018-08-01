@@ -22,7 +22,7 @@ kolla_base_distro: "ubuntu"
 # Valid option is Docker repository tag
 #openstack_release: ""
 
-openstack_release: "queens"
+openstack_release: "pike"
 
 # Location of configuration overrides
 #node_custom_config: "/etc/kolla/config"
@@ -134,14 +134,15 @@ neutron_external_interface: "enp0s9"
 #enable_opendaylight_qos: "no"
 #enable_opendaylight_l3: "yes"
 
+enable_opendaylight_l3: "no"
+
+
 ###################
 # OpenStack options
 ###################
 # Use these options to set the various log levels across all OpenStack projects
 # Valid options are [ True, False ]
 #openstack_logging_debug: "False"
-
-openstack_logging_debug: "True"
 
 # Valid options are [ none, novnc, spice, rdp ]
 #nova_console: "novnc"
@@ -152,8 +153,6 @@ openstack_logging_debug: "True"
 #enable_blazar: "no"
 #enable_ceilometer: "no"
 #enable_central_logging: "no"
-
-enable_central_logging: "yes"
 
 #enable_ceph: "no"
 #enable_ceph: "no"
@@ -175,6 +174,7 @@ enable_central_logging: "yes"
 #enable_destroy_images: "no"
 #enable_etcd: "no"
 #enable_fluentd: "yes"
+enable_fluentd: "no"
 #enable_freezer: "no"
 #enable_gnocchi: "no"
 #enable_grafana: "no"
@@ -447,4 +447,4 @@ tempest_floating_network_name:
 
 
 # For provider networks compute hosts must have external bridge created and configured by Ansible tasks like it is already done for tenant DVR mode networking. Normal tenant non-DVR networking does not need external bridge on compute hosts and therefore operators don’t need additional dedicated network interface.
-enable_neutron_provider_networks: "yes"
+#enable_neutron_provider_networks: "yes"
