@@ -8,21 +8,21 @@
   - kolla
   - kolla-ansible
 
-- name: Clonar repo kolla
-  git:
-    repo: https://github.com/openstack/kolla.git
-    dest: /home/vagrant/kolla
-    version: "stable/{{ openstack_version }}"
-  become: yes
-  become_user: vagrant
-
-- name: Clonar repo kolla-ansible
-  git:
-    repo: https://github.com/gsanso/kolla-ansible.git
-    dest: /home/vagrant/kolla-ansible
-    version: "stable/{{ openstack_version }}"
-  become: yes
-  become_user: vagrant
+#- name: Clonar repo kolla
+#  git:
+#    repo: https://github.com/openstack/kolla.git
+#    dest: /home/vagrant/kolla
+#    version: "stable/{{ openstack_version }}"
+#  become: yes
+#  become_user: vagrant
+#
+#- name: Clonar repo kolla-ansible
+#  git:
+#    repo: https://github.com/gsanso/kolla-ansible.git
+#    dest: /home/vagrant/kolla-ansible
+#    version: "stable/{{ openstack_version }}"
+#  become: yes
+#  become_user: vagrant
 
 - name: Clonar repo kolla-ansible-wdcs
   git:
@@ -32,23 +32,23 @@
   become: yes
   become_user: vagrant
 
-- name: Clonar repo kolla-cli
-  git:
-    repo: https://github.com/openstack/kolla-cli.git
-    dest: /home/vagrant/kolla-cli
-    version: master
-  become: yes
-  become_user: vagrant
+#- name: Clonar repo kolla-cli
+#  git:
+#    repo: https://github.com/openstack/kolla-cli.git
+#    dest: /home/vagrant/kolla-cli
+#    version: master
+#  become: yes
+#  become_user: vagrant
 
-- name: Instalar requerimientos para kolla
-  pip:
-    requirements: /home/vagrant/kolla/requirements.txt
-  become: true
-
-- name: Instalar requerimientos para kolla-ansible
-  pip:
-    requirements: /home/vagrant/kolla-ansible/requirements.txt
-  become: true
+#- name: Instalar requerimientos para kolla
+#  pip:
+#    requirements: /home/vagrant/kolla/requirements.txt
+#  become: true
+#
+#- name: Instalar requerimientos para kolla-ansible
+#  pip:
+#    requirements: /home/vagrant/kolla-ansible/requirements.txt
+#  become: true
 
 #- name: Instalar requerimientos para kolla-cli
 #  pip:
@@ -64,7 +64,9 @@
 #  become: true
 
 - name: Copiar fichero multinode (inventory)
-  template: src=multinode.j2 dest=/home/vagrant/kolla-ansible/ansible/multinode
+  copy:
+    src: multinode
+    dest: /home/vagrant/multinode
   become: true
 
 - name: Verifcar que el dir /etc/kolla exista
@@ -100,5 +102,5 @@
 
 
 - name: Generar las contraseñas
-  shell: /home/vagrant/kolla-ansible/tools/generate_passwords.py
+  shell: /usr/local/bin/kolla-genpwd
   become: true

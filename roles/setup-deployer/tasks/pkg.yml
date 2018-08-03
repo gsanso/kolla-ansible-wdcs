@@ -20,7 +20,6 @@
 
 - name: Remover paquetes conflictivos
   apt: name={{ item }} state=absent
-  become: yes
   with_items:
   - python-ndg-httpsclient
   - python-openssl
