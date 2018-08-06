@@ -1,26 +1,26 @@
 ---
 - name: kolla-deployer
   box: peru/ubuntu-16.04-server-amd64
-  ram: 1024
+  ram: 2048
   ip: 172.16.117.100
   disk: 50G
 - name: kolla-ct1
   box: peru/ubuntu-16.04-server-amd64
-  ram: 3584
+  ram: 6144
   ip: 172.16.117.10
   disk: 50G
 - name: kolla-ct2
   box: peru/ubuntu-16.04-server-amd64
-  ram: 3584
+  ram: 6144
   ip: 172.16.117.11
   disk: 50G
 - name: kolla-ct3
   box: peru/ubuntu-16.04-server-amd64
-  ram: 3584
+  ram: 6144
   ip: 172.16.117.12
   disk: 50G
 - name: kolla-cp1
   box: peru/ubuntu-16.04-server-amd64
-  ram: 2048
+  ram: 6144
   ip: 172.16.117.13
   disk: 80G

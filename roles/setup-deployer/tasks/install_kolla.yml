@@ -73,11 +73,13 @@
   file:
     path: /etc/kolla
     state: directory
+    owner: vagrant
 
 - name: Verifcar que el dir /etc/kolla/config exista
   file:
     path: /etc/kolla/config
     state: directory
+    owner: vagrant
 
 - name: Copiar fichero globals.yml (variables globales de kolla)
   #Aqui no utilizo template porque da error al parsear las vars del fichero
