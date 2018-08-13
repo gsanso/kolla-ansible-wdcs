@@ -40,8 +40,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     srv.vm.provider :libvirt do |libvirt|
         libvirt.driver = "kvm"
-	libvirt.cpu_mode = "host-passthrough"
-	libvirt.nested = true
+        libvirt.cpu_mode = "host-passthrough"
+        libvirt.nested = true
         libvirt.memory = servers["ram"]
         #libvirt.cpus = servers["cpus"]
         libvirt.storage :file, :size => servers["disk"], :type => 'qcow2', :cache => 'none'

@@ -1,0 +1,5 @@
+---
+- name: Test on nodes
+  hosts: nodes 
+  roles:
+    - { role: setup-ssh-keys }

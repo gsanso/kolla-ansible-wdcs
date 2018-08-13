@@ -1,7 +1,5 @@
-- name: Configurar los nodos y el deployer
-  hosts: all
-  remote_user: root
+- import_playbook: setup-deployer.yml
 
-  roles:
-    - setup-deployer
-    - setup-nodes
+- import_playbook: setup-nodes.yml
+
+- import_playbook: install-openstack.yml

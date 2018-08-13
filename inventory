@@ -6,3 +6,7 @@ kolla-ct1 ansible_host=172.16.117.10 ansible_user=vagrant password=vagrant ansib
 kolla-ct2 ansible_host=172.16.117.11 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
 kolla-ct3 ansible_host=172.16.117.12 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
 kolla-cp1 ansible_host=172.16.117.13 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-st1 ansible_host=172.16.117.14 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-st2 ansible_host=172.16.117.15 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-st3 ansible_host=172.16.117.16 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+

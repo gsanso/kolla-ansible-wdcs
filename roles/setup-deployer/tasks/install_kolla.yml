@@ -8,6 +8,16 @@
   - kolla
   - kolla-ansible
 
+- name: Clonar repo kolla-ansible-wdcs
+  git:
+    repo: https://github.com/gsanso/kolla-ansible-wdcs.git
+    dest: /home/{{ ansible_user }}/kolla-ansible-wdcs
+    version: master 
+  become: yes
+  become_user: vagrant
+
+# Según la documentacion hay que utilizar los repos de git solo si vamos a desarrollar
+#
 #- name: Clonar repo kolla
 #  git:
 #    repo: https://github.com/openstack/kolla.git
@@ -23,15 +33,7 @@
 #    version: "stable/{{ openstack_version }}"
 #  become: yes
 #  become_user: vagrant
-
-- name: Clonar repo kolla-ansible-wdcs
-  git:
-    repo: https://github.com/gsanso/kolla-ansible-wdcs.git
-    dest: /home/vagrant/kolla-ansible-wdcs
-    version: master 
-  become: yes
-  become_user: vagrant
-
+#
 #- name: Clonar repo kolla-cli
 #  git:
 #    repo: https://github.com/openstack/kolla-cli.git
@@ -66,14 +68,9 @@
 - name: Copiar fichero multinode (inventory)
   copy:
     src: multinode
-    dest: /home/vagrant/multinode
-  become: true
-
-- name: Verifcar que el dir /etc/kolla exista
-  file:
-    path: /etc/kolla
-    state: directory
-    owner: vagrant
+    dest: /home/{{ ansible_user }}/multinode
+  become: yes
+  become_user: vagrant
 
 - name: Verifcar que el dir /etc/kolla/config exista
   file:
@@ -86,15 +83,18 @@
   copy:
     src: globals.yml
     dest: /etc/kolla/globals.yml
-  become: true
 
 - name: Copiar fichero passwords.yml
   copy:
     src: passwords.yml
     dest: /etc/kolla/passwords.yml
-  become: true
 
-#- name: Crear las ssh keys para el usuario en el deployer
+- name: Copiar template para ceph.conf
+  template:
+    src: ceph.conf.j2
+    dest: /etc/kolla/config/ceph.conf
+
+# Crear las ssh keys para el usuario en el deployer
 - name: Crear key de ssh de 2048-bit
   user:
     name: vagrant

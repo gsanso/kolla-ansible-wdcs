@@ -5,5 +5,5 @@
     state: directory
 
 - name: Generar los certificados
-  shell: /home/vagrant/kolla-ansible/tools/kolla-ansible -i ./multinode certificates
+  shell: /usr/local/bin/kolla-ansible -i  /home/{{ ansible_user }}/multinode certificates
   become: true

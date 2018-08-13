@@ -1,0 +1,7 @@
+---
+- parted:
+    device: /dev/vdb
+    label: gpt
+    number: 1
+    name: "KOLLA_CEPH_OSD_BOOTSTRAP"
+    state: present
