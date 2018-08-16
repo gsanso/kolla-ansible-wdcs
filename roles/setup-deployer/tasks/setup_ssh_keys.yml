@@ -1,0 +1,5 @@
+---
+# Generate an OpenSSL private key with a different size (2048 bits)
+- openssl_privatekey:
+    path: /etc/ssl/private/vagrant.pem
+    size: 2048
