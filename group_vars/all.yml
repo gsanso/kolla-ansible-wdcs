@@ -1,5 +1,9 @@
 ---
-openstack_version: "queens"
+openstack_version: "pike"
+kolla_ansible_path: "/home/vagrant"
+enable_kolla_cli: yes
+
+# CEPH
 ceph_habilitado: True
 ceph_disco_dedicado: "/dev/vdb"
 ceph_mon_max_pg_per_osd: 10000       # 10000 >= luminous

@@ -144,16 +144,16 @@ neutron_external_interface: "eth2"
 ###################
 # Use these options to set the various log levels across all OpenStack projects
 # Valid options are [ True, False ]
-openstack_logging_debug: "True"
+#openstack_logging_debug: "False"
 
 # Valid options are [ none, novnc, spice, rdp ]
 #nova_console: "novnc"
 
 # OpenStack services can be enabled or disabled with these options
-#enable_aodh: "no"
+enable_aodh: "yes"
 #enable_barbican: "no"
 #enable_blazar: "no"
-#enable_ceilometer: "no"
+enable_ceilometer: "yes"
 #enable_central_logging: "no"
 
 enable_ceph: "yes"
@@ -177,7 +177,7 @@ enable_cinder: "yes"
 #enable_fluentd: "yes"
 enable_fluentd: "no"
 #enable_freezer: "no"
-#enable_gnocchi: "no"
+enable_gnocchi: "yes"
 #enable_grafana: "no"
 #enable_haproxy: "yes"
 #enable_heat: "yes"
@@ -235,7 +235,7 @@ enable_heat: "no"
 #enable_openvswitch: "{{ neutron_plugin_agent != 'linuxbridge' }}"
 #enable_ovs_dpdk: "no"
 #enable_osprofiler: "no"
-#enable_panko: "no"
+enable_panko: "yes"
 #enable_qdrouterd: "no"
 #enable_rally: "no"
 #enable_redis: "no"
@@ -248,7 +248,6 @@ enable_heat: "no"
 #enable_telegraf: "no"
 #enable_tacker: "no"
 #enable_tempest: "no"
-enable_tempest: "yes"
 #enable_trove: "no"
 #enable_vitrage: "no"
 #enable_vmtp: "no"
@@ -327,6 +326,7 @@ glance_backend_ceph: "yes"
 #################
 # Valid options are [ file, ceph ]
 #gnocchi_backend_storage: "{{ 'ceph' if enable_ceph|bool else 'file' }}"
+gnocchi_backend_storage: "file"
 
 
 ################################

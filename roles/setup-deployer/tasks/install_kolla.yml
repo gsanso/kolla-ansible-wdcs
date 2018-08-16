@@ -4,6 +4,7 @@
   pip:
     name: "{{ item }}"
   become: True
+  #  version: 6.1.1     # Queens: 6.1.1 Pike: 5.0.3
   with_items:
   - kolla
   - kolla-ansible
@@ -34,14 +35,6 @@
 #  become: yes
 #  become_user: vagrant
 #
-#- name: Clonar repo kolla-cli
-#  git:
-#    repo: https://github.com/openstack/kolla-cli.git
-#    dest: /home/vagrant/kolla-cli
-#    version: master
-#  become: yes
-#  become_user: vagrant
-
 #- name: Instalar requerimientos para kolla
 #  pip:
 #    requirements: /home/vagrant/kolla/requirements.txt
@@ -52,23 +45,32 @@
 #    requirements: /home/vagrant/kolla-ansible/requirements.txt
 #  become: true
 
+#- name: Clonar repo kolla-cli
+#  git:
+#    repo: https://github.com/openstack/kolla-cli.git
+#    dest: "/home/vagrant/kolla-cli"
+#    version: master
+#  become: yes
+#  become_user: vagrant
+#  when: enable_kolla_cli
+#
 #- name: Instalar requerimientos para kolla-cli
 #  pip:
-#    requirements: /home/vagrant/kolla-cli/requirements.txt
+#    requirements: "/home/vagrant/kolla-cli/requirements.txt"
 #  become: true
-
+#
 #- name: Instalar kolla-cli
 #  shell: "python /home/vagrant/kolla-cli/setup.py install"
-#  become: true
+#  when: enable_kolla_cli
 #
 #- name: Setup kolla-cli
 #  shell: "python /home/vagrant/kolla-cli/cli_setup.py"
-#  become: true
+#  when: enable_kolla_cli
 
 - name: Copiar fichero multinode (inventory)
   copy:
     src: multinode
-    dest: /home/{{ ansible_user }}/multinode
+    dest: "/home/vagrant/multinode"
   become: yes
   become_user: vagrant
 

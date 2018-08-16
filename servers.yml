@@ -6,36 +6,36 @@
   disk: 50G
 - name: kolla-ct1
   box: peru/ubuntu-16.04-server-amd64
-  ram: 6144
+  ram: 5120
   ip: 172.16.117.10
   disk: 50G
 - name: kolla-ct2
   box: peru/ubuntu-16.04-server-amd64
-  ram: 6144
+  ram: 5120
   ip: 172.16.117.11
   disk: 50G
 - name: kolla-ct3
   box: peru/ubuntu-16.04-server-amd64
-  ram: 6144
+  ram: 5120
   ip: 172.16.117.12
   disk: 50G
 - name: kolla-cp1
   box: peru/ubuntu-16.04-server-amd64
-  ram: 6144
+  ram: 5120
   ip: 172.16.117.13
   disk: 50G
-- name: kolla-st1
+- name: kolla-cp2
   box: peru/ubuntu-16.04-server-amd64
-  ram: 1024
+  ram: 5120
   ip: 172.16.117.14
   disk: 50G
-- name: kolla-st2
+- name: kolla-cp3
   box: peru/ubuntu-16.04-server-amd64
-  ram: 1024
+  ram: 5120
   ip: 172.16.117.15
   disk: 50G
-- name: kolla-st3
+- name: kolla-me1
   box: peru/ubuntu-16.04-server-amd64
-  ram: 1024
+  ram: 3072
   ip: 172.16.117.16
   disk: 50G

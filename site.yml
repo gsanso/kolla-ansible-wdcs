@@ -1,5 +1,7 @@
+- import_playbook: deploy_authorized_keys.yml
+
 - import_playbook: setup-deployer.yml
 
 - import_playbook: setup-nodes.yml
 
-- import_playbook: install-openstack.yml
+- import_playbook: pre-setup.yml

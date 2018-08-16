@@ -1,0 +1,15 @@
+- name: Ejecutar playbooks de kolla-ansible
+  hosts: deployer
+  tasks:
+    - name: Instalando Openstack con Kolla
+      command: "kolla-ansible -i ./multinode {{ item }}"
+      args:
+        chdir: "{{ kolla_ansible_path }}"
+      with_items:
+        - "bootstrap-servers"
+        - "prechecks"
+        - "pull"
+        - "deploy"
+      register: kolla_ansible_plays
+#  when:
+#    - not (ansible_openstack_rhel_plays | default({})) is failed

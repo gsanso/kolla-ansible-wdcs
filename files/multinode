@@ -8,23 +8,17 @@ kolla-ct3 ansible_host=172.16.117.12 ansible_user=vagrant password=vagrant ansib
 
 # The network nodes are where your l3-agent and loadbalancers will run
 # This can be the same as a host in the control group
-#[network]
-#172.16.117.[10:12] ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
-
 [network:children]
 control
 # when you specify group_name:children, it will use contents of group specified.
 
 [compute]
 kolla-cp1 ansible_host=172.16.117.13 ansible_user=vagrant ansible_password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-cp2 ansible_host=172.16.117.14 ansible_user=vagrant ansible_password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-cp3 ansible_host=172.16.117.15 ansible_user=vagrant ansible_password=vagrant ansible_become=true ansible_sudo_pass=vagrant
 
-#[storage:children]
-#control
-#compute
-[storage]
-kolla-st1 ansible_host=172.16.117.14 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
-kolla-st2 ansible_host=172.16.117.15 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
-kolla-st3 ansible_host=172.16.117.16 ansible_user=vagrant password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+[storage:children]
+compute
 
 # inner-compute is the groups of compute nodes which do not have
 # external reachability
@@ -41,7 +35,7 @@ compute
 
 # asigno ct3 para monitoring
 [monitoring]
-kolla-ct3 ansible_host=172.16.117.12 ansible_user=vagrant ansible_password=vagrant ansible_become=true ansible_sudo_pass=vagrant
+kolla-me1 ansible_host=172.16.117.16 ansible_user=vagrant ansible_password=vagrant ansible_become=true ansible_sudo_pass=vagrant
 
 # When compute nodes and control nodes use different interfaces,
 # you need to comment out "api_interface" and other interfaces from the globals.yml

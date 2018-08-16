@@ -1,0 +1,17 @@
+- name: Download cirros image
+  get_url:
+    url: http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
+    dest: /tmp/cirros-0.3.4-x86_64-disk.img
+
+- name: Upload cirros image to openstack
+  os_image:
+    auth:
+      auth_url: https://identity.example.com
+      username: admin
+      password: passme
+      project_name: admin
+    name: cirros
+    container_format: bare
+    disk_format: qcow2
+    state: present
+    filename: /tmp/cirros-0.3.4-x86_64-disk.img

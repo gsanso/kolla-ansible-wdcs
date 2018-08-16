@@ -1,0 +1,1 @@
+- include_tasks: upload_image.yml

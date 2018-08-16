@@ -1,0 +1,5 @@
+---
+- name: Tareas para luego de haver instalado Openstack
+  hosts: deployer
+  roles:
+    - { role: post-deploy }

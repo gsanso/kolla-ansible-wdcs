@@ -1,5 +1,0 @@
----
-- name: Instalar Openstack con Kolla
-  hosts: nodes
-  roles:
-    - { role: instalar-openstack }
