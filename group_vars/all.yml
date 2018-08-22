@@ -1,5 +1,5 @@
 ---
-openstack_version: "pike"
+openstack_version: "queens"
 kolla_ansible_path: "/home/vagrant"
 enable_kolla_cli: yes
 

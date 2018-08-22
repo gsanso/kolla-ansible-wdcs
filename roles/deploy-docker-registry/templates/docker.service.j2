@@ -2,4 +2,4 @@
 MountFlags=shared
 EnvironmentFile=-/etc/default/docker
 ExecStart=
-ExecStart=/usr/bin/docker daemon -H fd:// $DOCKER_OPTS
+ExecStart=/usr/bin/dockerd $DOCKER_OPTS
