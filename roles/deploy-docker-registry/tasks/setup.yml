@@ -15,7 +15,7 @@
 
 - name: Generate systemd unit file
   template:
-    src: "etc/systemd/system/docker.service.j2"
+    src: "docker.service.j2"
     dest: "/etc/systemd/system/docker.service"
     owner: "root"
     group: "root"
