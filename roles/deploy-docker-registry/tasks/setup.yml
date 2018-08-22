@@ -1,0 +1,36 @@
+---
+
+- name: Remove Upstart config file
+  file:
+    path: "/etc/default/docker"
+    state: "absent"
+
+- name: Ensure systemd directory exists
+  file:
+    path: "/etc/systemd/system"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+
+- name: Generate systemd unit file
+  template:
+    src: "etc/systemd/system/docker.service.j2"
+    dest: "/etc/systemd/system/docker.service"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  register: docker_register_systemd_service
+
+- name: Reload systemd daemon
+  command: "systemctl daemon-reload"
+  notify: ["Restart Docker"]
+  when: (docker_register_systemd_service and
+         docker_register_systemd_service | changed)
+
+
+
+
+- name: Copiar fichero de configuracion de Docker
+  template: src=docker.j2 dest=/etc/default/docker
+
