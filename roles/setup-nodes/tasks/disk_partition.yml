@@ -1,6 +1,7 @@
- ---
+---
 # Si habilitamos CEPH creamos el label para que kolla lo reconozca
-- parted:
+- name: Creamos label para que kolla lo reconozca como un disco para CEPH
+  parted:
     device: "{{ ceph_disco_dedicado }}"
     label: gpt
     number: 1
