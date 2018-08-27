@@ -1,5 +1,0 @@
----
-- name: Deploy kolla-ansible
-  hosts: deployer
-  roles:
-    - { role: deploy-kolla-ansible }

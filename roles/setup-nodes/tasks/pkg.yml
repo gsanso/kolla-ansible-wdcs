@@ -4,5 +4,7 @@
   become: yes
   with_items:
   - parted
+  - lvm2
+  - scsitools
   - vim
   - aptitude

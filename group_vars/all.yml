@@ -1,12 +1,13 @@
 ---
-openstack_version: "pike"
+openstack_version: "queens"
 kolla_ansible_path: "/home/vagrant"
-enable_kolla_cli: yes
+enable_kolla_cli: no
+install_from_git: no
 
 # CEPH
-ceph_habilitado: True
+ceph_habilitado: true
 ceph_disco_dedicado: "/dev/vdb"
 ceph_mon_max_pg_per_osd: 10000       # 10000 >= luminous
 
-docker_registry_host: 172.16.117.1
+docker_registry_host: kolla-deployer  # Utilizando ip he tenido problemas. Usar hostname.
 docker_registry_port: 5000

@@ -1,0 +1,12 @@
+---
+
+- name: Copiamos nuestro ssh key a los nodos
+  hosts: nodes, deployer
+  gather_facts: no
+  tasks:
+    - set_fact:
+        rem_user: "{{ ansible_user | default(lookup('env','USER')) }}"
+        rem_host: "{{ ansible_host }}"
+        rem_pass: "{{ ansible_ssh_pass }}"
+    - name: Copiamos nuestro ssh key a los nodos
+      local_action: command sshpass -p {{ rem_pass }} ssh-copy-id {{ rem_user }}@{{ rem_host }}

@@ -1,5 +1,0 @@
----
-- name: Instalar pre-requisitos antes de hacer deploy con Kolla
-  hosts: nodes
-  roles:
-    - { role: pre-setup }

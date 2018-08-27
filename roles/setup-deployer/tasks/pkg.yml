@@ -16,7 +16,6 @@
   - vim
   - aptitude
   - curl
-  - telnet
 
 - name: Remover paquetes conflictivos
   apt: name={{ item }} state=absent

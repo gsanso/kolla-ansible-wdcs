@@ -58,7 +58,7 @@ kolla_external_vip_address: "172.16.3.20"
 # Below is an example of a private repository with authentication. Note the
 # Docker registry password can also be set in the passwords.yml file.
 
-#docker_registry: "172.16.117.10:4000"
+docker_registry: "kolla-registry:4000"
 #docker_namespace: "companyname"
 #docker_registry_username: "sam"
 #docker_registry_password: "correcthorsebatterystaple"
@@ -175,7 +175,6 @@ enable_cinder: "yes"
 #enable_destroy_images: "no"
 #enable_etcd: "no"
 #enable_fluentd: "yes"
-enable_fluentd: "no"
 #enable_freezer: "no"
 enable_gnocchi: "yes"
 #enable_grafana: "no"
@@ -216,7 +215,7 @@ enable_heat: "no"
 #enable_manila_backend_cephfs_native: "no"
 #enable_manila_backend_cephfs_nfs: "no"
 #enable_mistral: "no"
-#enable_mongodb: "no"
+enable_mongodb: "yes"
 #enable_murano: "no"
 #enable_multipathd: "no"
 #enable_neutron_bgp_dragent: "no"
@@ -326,7 +325,6 @@ glance_backend_ceph: "yes"
 #################
 # Valid options are [ file, ceph ]
 #gnocchi_backend_storage: "{{ 'ceph' if enable_ceph|bool else 'file' }}"
-gnocchi_backend_storage: "file"
 
 
 ################################

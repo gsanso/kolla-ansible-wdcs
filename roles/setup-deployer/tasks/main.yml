@@ -1,5 +1,5 @@
 - include_tasks: pkg.yml
 - include_tasks: setup.yml
 - include_tasks: install_kolla.yml
-- include_tasks: setup_tls.yml
-- include_tasks: setup_ssh_keys.yml
+#- include_tasks: setup_tls.yml
+#- include_tasks: setup_ssh_keys.yml

@@ -1,8 +1,0 @@
----
-- parted:
-    device: "{{ ceph_disco_dedicado }}"
-    label: gpt
-    number: 1
-    name: "KOLLA_CEPH_OSD_BOOTSTRAP"
-    state: present
-  when: ceph_habilitado

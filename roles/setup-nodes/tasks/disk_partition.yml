@@ -1,7 +1,17 @@
----
+ ---
+# Si habilitamos CEPH creamos el label para que kolla lo reconozca
 - parted:
-    device: /dev/vdb
+    device: "{{ ceph_disco_dedicado }}"
     label: gpt
     number: 1
     name: "KOLLA_CEPH_OSD_BOOTSTRAP"
     state: present
+  when: ceph_habilitado
+
+# Si no habilitamos CEPH utilizaremos LVM y para ello creamos el VG cinder-volumes
+- name: Creamos volume group utilizando todo el espacio disponible en el disco
+  lvg:
+    vg: cinder-volumes
+    pvs: "{{ ceph_disco_dedicado }}"
+  when: not ceph_habilitado
+  become: yes

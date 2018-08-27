@@ -1,5 +1,6 @@
 ---
 - name: Setup deployer node
-  hosts: nodes
+  hosts: deployer 
+  become: yes
   roles:
     - { role: deploy-docker-registry }

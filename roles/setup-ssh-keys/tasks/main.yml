@@ -1,4 +1,10 @@
-- authorized_key:
-    user: "{{ ansible_user }}"
-    state: present
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+---
+- name: Copiamos nuestro ssh key a los nodos 1/2
+  set_fact:
+    rem_user: "{{ ansible_user | default(lookup('env','USER')) }}"
+    rem_host: "{{ ansible_host }}"
+    rem_pass: "{{ ansible_ssh_pass }}"
+
+- name: Copiamos nuestro ssh key a los nodos 2/2
+  local_action: command sshpass -p {{ rem_pass }} ssh-copy-id {{ rem_user }}@{{ rem_host }}
+  run_once: yes
