@@ -13,7 +13,7 @@
 - name: Clonar repo kolla-ansible-wdcs
   git:
     repo: https://github.com/gsanso/kolla-ansible-wdcs.git
-    dest: "{{ ansible_user }}/kolla-ansible-wdcs"
+    dest: "/home/{{ ansible_user }}/kolla-ansible-wdcs"
     version: master 
   become: yes
   become_user: vagrant
@@ -23,7 +23,7 @@
 - name: Clonar repo kolla
   git:
     repo: https://github.com/openstack/kolla.git
-    dest: "{{ ansible_user }}/kolla"
+    dest: "/home/{{ ansible_user }}/kolla"
     version: "stable/{{ openstack_version }}"
     #version: "master"
   become: yes
@@ -33,7 +33,7 @@
 - name: Clonar repo kolla-ansible
   git:
     repo: https://github.com/gsanso/kolla-ansible.git
-    dest: "{{ ansible_user }}/kolla-ansible"
+    dest: "/home/{{ ansible_user }}/kolla-ansible"
     version: "stable/{{ openstack_version }}"
     #version: "master"
   become: yes
@@ -45,8 +45,8 @@
     requirements:
   become: true
   with_items:
-    - "{{ ansible_user }}/kolla/requirements.txt"
-    - "{{ ansible_user }}/kolla-ansible/requirements.txt"
+    - "/home/{{ ansible_user }}/kolla/requirements.txt"
+    - "/home/{{ ansible_user }}/kolla-ansible/requirements.txt"
   when: install_from_git
 
 - name: agregar kolla-ansible al PATH
