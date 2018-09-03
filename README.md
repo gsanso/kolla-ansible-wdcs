@@ -130,6 +130,7 @@ Tambien instalamos los clientes openstack que necesitaremos luego para verificar
 Hay dos formas de instalar kolla y kolla-ansible:
 
 **Método 1**: Instalar con **pip**
+
 Instalar kolla y kolla-ansible con pip
 
     sudo pip install kolla
@@ -384,35 +385,32 @@ Para utilizar CEPH debemos tener los siguientes parámetros en el fichero /etc/k
     glance_backend_ceph: "yes"
 
 
-Para que Kolla sepa que discos están disponibles para CEPH es necesario crear un label con el nombre KOLLA_CEPH_OSD_BOOTSTRAP
+Para que Kolla sepa que discos están disponibles para CEPH es necesario crear un label con el nombre *KOLLA_CEPH_OSD_BOOTSTRAP*
 
 Por ejemplo:
 
-export DISK="/dev/vdb"
-parted $DISK -s -- mklabel gpt mkpart KOLLA_CEPH_OSD_BOOTSTRAP 1 -1
+    export DISK="/dev/vdb"
+    parted $DISK -s -- mklabel gpt mkpart KOLLA_CEPH_OSD_BOOTSTRAP 1 -1
 
 
 
 
-vim /etc/kolla/config/ceph.conf:
+vim `/etc/kolla/config/ceph.conf`:
 
-[global]
- mon max pg per osd = 10000        # >= luminous
+    [global]
+    mon max pg per osd = 10000        # >= luminous
 
 
 Modificar la configuración de un componente de Openstack
 
 Debemos crear el directorio /etc/kolla/config  
 
-mkdir -p /etc/kolla/config
+    mkdir -p /etc/kolla/config
 
 Y dentro de ese directorio colocar el fichero con la configuración deseada. Por ejemplo para modificar Nova para que utilice qemu haríamos lo siguiente:
 
-vim /etc/kolla/config/nova.conf:
+vim `/etc/kolla/config/nova.conf`:
 
-[libvirt]
-virt_type=qemu
-cpu_mode = none
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Troubleshooting
+    [libvirt]
+    virt_type=qemu
+    cpu_mode = none
