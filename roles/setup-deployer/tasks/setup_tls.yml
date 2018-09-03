@@ -10,6 +10,6 @@
   when: not install_from_git
 
 - name: Generar los certificados
-  shell: /home/vagrant/kolla-ansible/tools/kolla-ansible -i  /home/{{ ansible_user }}/multinode certificates
+  shell: /home/{{ ansible_user }}/kolla-ansible/tools/kolla-ansible -i  /home/{{ ansible_user }}/multinode certificates
   become: true
   when: install_from_git

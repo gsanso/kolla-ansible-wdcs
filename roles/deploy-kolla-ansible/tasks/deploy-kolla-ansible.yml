@@ -4,7 +4,7 @@
     - name: Instalando Openstack con Kolla
       command: "kolla-ansible -i ./multinode {{ item }}"
       args:
-        chdir: "{{ kolla_ansible_path }}"
+        chdir: "{{ ansible_user }}"
       with_items:
         - "bootstrap-servers"
         - "prechecks"

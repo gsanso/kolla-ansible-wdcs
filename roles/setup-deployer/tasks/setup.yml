@@ -1,28 +1,28 @@
 ---
 
-- name: select default locale
-  debconf:
-    name: locales
-    question: locales/default_environment_locale
-    value: en_US.UTF-8
-    vtype: select
-  notify:
-    - rebuild locales database
-
-- name: /etc/locale.gen
-  lineinfile:
-    dest: /etc/locale.gen
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { regexp: '^#? ?es_ES ISO-8859-1', line: 'es_ES ISO-8859-1', state: present }
-    - { regexp: '^#? ?es_ES.UTF-8 UTF-8', line: 'es_ES.UTF-8 UTF-8', state: present }
-    - { regexp: '^#? ?en_US ISO-8859-1', line: 'en_US ISO-8859-1', state: present }
-    - { regexp: '^#? ?en_US.ISO-8859-15 ISO-8859-15', line: 'en_US.ISO-8859-15 ISO-8859-15', state: present }
-    - { regexp: '^#? ?en_US.UTF-8 UTF-8', line: 'en_US.UTF-8 UTF-8', state: present }
-  notify:
-    - rebuild locales database
+#- name: select default locale
+#  debconf:
+#    name: locales
+#    question: locales/default_environment_locale
+#    value: en_US.UTF-8
+#    vtype: select
+#  notify:
+#    - rebuild locales database
+#
+#- name: /etc/locale.gen
+#  lineinfile:
+#    dest: /etc/locale.gen
+#    regexp: "{{ item.regexp }}"
+#    line: "{{ item.line }}"
+#    state: "{{ item.state }}"
+#  with_items:
+#    - { regexp: '^#? ?es_ES ISO-8859-1', line: 'es_ES ISO-8859-1', state: present }
+#    - { regexp: '^#? ?es_ES.UTF-8 UTF-8', line: 'es_ES.UTF-8 UTF-8', state: present }
+#    - { regexp: '^#? ?en_US ISO-8859-1', line: 'en_US ISO-8859-1', state: present }
+#    - { regexp: '^#? ?en_US.ISO-8859-15 ISO-8859-15', line: 'en_US.ISO-8859-15 ISO-8859-15', state: present }
+#    - { regexp: '^#? ?en_US.UTF-8 UTF-8', line: 'en_US.UTF-8 UTF-8', state: present }
+#  notify:
+#    - rebuild locales database
 
 - name: Grupo docker debe existir
   group:

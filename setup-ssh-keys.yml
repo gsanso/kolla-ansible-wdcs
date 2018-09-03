@@ -2,7 +2,7 @@
 
 - name: Copiamos nuestro ssh key a los nodos
   hosts: nodes, deployer
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - set_fact:
         rem_user: "{{ ansible_user | default(lookup('env','USER')) }}"

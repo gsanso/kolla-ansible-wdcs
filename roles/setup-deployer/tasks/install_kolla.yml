@@ -13,7 +13,7 @@
 - name: Clonar repo kolla-ansible-wdcs
   git:
     repo: https://github.com/gsanso/kolla-ansible-wdcs.git
-    dest: "{{ kolla_ansible_path }}/kolla-ansible-wdcs"
+    dest: "{{ ansible_user }}/kolla-ansible-wdcs"
     version: master 
   become: yes
   become_user: vagrant
@@ -23,7 +23,7 @@
 - name: Clonar repo kolla
   git:
     repo: https://github.com/openstack/kolla.git
-    dest: "{{ kolla_ansible_path }}/kolla"
+    dest: "{{ ansible_user }}/kolla"
     version: "stable/{{ openstack_version }}"
     #version: "master"
   become: yes
@@ -33,7 +33,7 @@
 - name: Clonar repo kolla-ansible
   git:
     repo: https://github.com/gsanso/kolla-ansible.git
-    dest: "{{ kolla_ansible_path }}/kolla-ansible"
+    dest: "{{ ansible_user }}/kolla-ansible"
     version: "stable/{{ openstack_version }}"
     #version: "master"
   become: yes
@@ -45,26 +45,26 @@
     requirements:
   become: true
   with_items:
-    - "{{ kolla_ansible_path }}/kolla/requirements.txt"
-    - "{{ kolla_ansible_path }}/kolla-ansible/requirements.txt"
+    - "{{ ansible_user }}/kolla/requirements.txt"
+    - "{{ ansible_user }}/kolla-ansible/requirements.txt"
   when: install_from_git
 
 - name: agregar kolla-ansible al PATH
   copy:
     dest: /etc/profile.d/kolla-ansible-path.sh
-    content: 'PATH=$PATH:{{ kolla_ansible_path }}/kolla-ansible/tools'
+    content: 'PATH=$PATH:{{ ansible_user }}/kolla-ansible/tools'
   when: install_from_git
 
 #- name: Fix para Ceilometer (sobreescribimos fichero extend_start.sh)
 #  copy:
 #    src: extend_start.sh
-#    dest: /home/vagrant/kolla/docker/ceilometer/ceilometer-notification/extend_start.sh
+#    dest: /home/{{ ansible_user }}/kolla/docker/ceilometer/ceilometer-notification/extend_start.sh
 
 
 #- name: Clonar repo kolla-cli
 #  git:
 #    repo: https://github.com/openstack/kolla-cli.git
-#    dest: "/home/vagrant/kolla-cli"
+#    dest: "/home/{{ ansible_user }}/kolla-cli"
 #    version: master
 #  become: yes
 #  become_user: vagrant
@@ -72,21 +72,21 @@
 #
 #- name: Instalar requerimientos para kolla-cli
 #  pip:
-#    requirements: "/home/vagrant/kolla-cli/requirements.txt"
+#    requirements: "/home/{{ ansible_user }}/kolla-cli/requirements.txt"
 #  become: true
 #
 #- name: Instalar kolla-cli
-#  shell: "python /home/vagrant/kolla-cli/setup.py install"
+#  shell: "python /home/{{ ansible_user }}/kolla-cli/setup.py install"
 #  when: enable_kolla_cli
 #
 #- name: Setup kolla-cli
-#  shell: "python /home/vagrant/kolla-cli/cli_setup.py"
+#  shell: "python /home/{{ ansible_user }}/kolla-cli/cli_setup.py"
 #  when: enable_kolla_cli
 
 - name: Copiar fichero multinode (inventory)
   copy:
     src: multinode
-    dest: "/home/vagrant/multinode"
+    dest: "/home/{{ ansible_user }}/multinode"
   become: yes
   become_user: vagrant
 
@@ -126,6 +126,6 @@
   when: not install_from_git
 
 - name: Generar las contraseñas
-  shell: /home/vagrant/kolla-ansible/tools/generate_passwords.py
+  shell: /home/{{ ansible_user }}/kolla-ansible/tools/generate_passwords.py
   become: true
   when: install_from_git
