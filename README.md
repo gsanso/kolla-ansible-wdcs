@@ -79,6 +79,8 @@ Ejemplo (Esta configuración básica me funcionó):
 
         ansible-playbook -i inventory site.yml
 
+<span style="color:red"> NOTA: Si dá error ejecutar nuevamente</span> (fixme)
+
 Ejecutando ansible-playbook contra el fichero `site.yml` se ejecutarán los siguientes playbooks:
 
 
